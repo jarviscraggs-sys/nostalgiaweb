@@ -411,22 +411,28 @@ export default function UserPage() {
         className={wallpaperClass}
         style={{ flex: 1, position: "relative", overflow: "hidden" }}
       >
-        {/* Desktop icon - link to homepage */}
-        <div style={{ position: "absolute", top: 12, right: 12, textAlign: "center", color: "white", cursor: "default", zIndex: 10 }}>
-          <Link href="/" style={{ textDecoration: "none", color: "white" }}>
-            <div style={{ fontSize: 28 }}>🌐</div>
-            <div style={{
-              fontSize: 10,
-              textShadow: "1px 1px 2px black",
-              background: "rgba(0,0,60,0.4)",
-              padding: "1px 3px",
-              marginTop: 2,
-              borderRadius: 1,
-            }}>
-              NostalgiaWeb
-            </div>
-          </Link>
-        </div>
+        {/* NostalgiaWeb badge — subtle, bottom-right */}
+        <Link
+          href="/"
+          style={{
+            position: "absolute", bottom: 50, right: 12, zIndex: 50,
+            display: "flex", alignItems: "center", gap: 6,
+            background: "rgba(15,15,26,0.7)",
+            backdropFilter: "blur(8px)",
+            border: "1px solid rgba(124,58,237,0.35)",
+            borderRadius: 99,
+            padding: "5px 12px 5px 8px",
+            textDecoration: "none",
+            fontSize: 11,
+            fontFamily: "'Inter', sans-serif",
+            fontWeight: 600,
+            color: "#CBD5E1",
+            boxShadow: "0 2px 12px rgba(0,0,0,0.3)",
+          }}
+        >
+          <span style={{ fontSize: 13 }}>🌐</span>
+          <span style={{ background: "linear-gradient(135deg,#7C3AED,#06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>NostalgiaWeb</span>
+        </Link>
 
         {/* Windows */}
         {widgets.map(widget => {

@@ -410,7 +410,7 @@ export default function EditorPage() {
 
   if (loading) {
     return (
-      <div style={{ minHeight: "100vh", background: "#008080", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "Tahoma, sans-serif", color: "white" }}>
+      <div style={{ minHeight: "100vh", background: "#0F0F1A", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Inter', sans-serif", color: "#94A3B8" }}>
         <p>Loading editor...</p>
       </div>
     );
@@ -422,48 +422,59 @@ export default function EditorPage() {
 
   return (
     <div style={{ minHeight: "100vh", display: "flex", flexDirection: "column", fontFamily: "Tahoma, Verdana, Arial, sans-serif", fontSize: 11 }}>
-      {/* Editor toolbar */}
+      {/* Editor toolbar — modern dark chrome */}
       <div style={{
-        background: "linear-gradient(to bottom, #ECE9D8, #D4D0C8)",
-        borderBottom: "2px solid #808080",
-        padding: "4px 8px",
+        background: "#12122A",
+        borderBottom: "1px solid rgba(124,58,237,0.2)",
+        padding: "0 16px",
+        height: 56,
         display: "flex",
         alignItems: "center",
-        gap: 8,
+        gap: 12,
         flexWrap: "wrap",
+        fontFamily: "'Inter', sans-serif",
       }}>
-        <span style={{ fontWeight: "bold", fontSize: 13, color: "#003E82" }}>🌐 NostalgiaWeb Editor</span>
+        <span style={{ fontWeight: 800, fontSize: 16, background: "linear-gradient(135deg,#7C3AED,#06B6D4)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", marginRight: 4 }}>NostalgiaWeb</span>
+        <span style={{ color: "#94A3B8", fontSize: 13 }}>Editor</span>
 
-        <div style={{ width: 1, height: 20, background: "#808080" }} />
+        <div style={{ width: 1, height: 24, background: "rgba(255,255,255,0.08)", margin: "0 4px" }} />
 
-        <button className="xp-button" onClick={() => setShowAddWidget(true)} style={{ fontWeight: "bold" }}>
+        <button
+          onClick={() => setShowAddWidget(true)}
+          style={{
+            background: "rgba(124,58,237,0.15)", border: "1px solid rgba(124,58,237,0.3)",
+            color: "#9F67FF", borderRadius: 7, padding: "6px 14px", cursor: "pointer",
+            fontSize: 13, fontWeight: 600, fontFamily: "'Inter', sans-serif",
+          }}
+        >
           + Add Widget
         </button>
 
-        <button className="xp-button" onClick={saveSiteSettings} disabled={saving} style={{ fontWeight: "bold" }}>
-          {saved ? "✅ Saved!" : saving ? "Saving..." : "💾 Save Settings"}
-        </button>
-
-        <div style={{ width: 1, height: 20, background: "#808080" }} />
-
         {/* Site title */}
-        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <label style={{ fontSize: 11 }}>Title:</label>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <label style={{ fontSize: 13, color: "#94A3B8", whiteSpace: "nowrap" }}>Title:</label>
           <input
-            className="xp-input"
             value={site.title}
             onChange={e => setSite(s => s ? { ...s, title: e.target.value } : s)}
-            style={{ width: 180 }}
+            style={{
+              background: "rgba(255,255,255,0.05)", border: "1px solid rgba(124,58,237,0.25)",
+              borderRadius: 7, padding: "6px 12px", fontSize: 13, color: "#F1F5F9",
+              fontFamily: "'Inter', sans-serif", outline: "none", width: 180,
+            }}
           />
         </div>
 
         {/* Wallpaper */}
-        <div style={{ display: "flex", alignItems: "center", gap: 4 }}>
-          <label style={{ fontSize: 11 }}>Wallpaper:</label>
+        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
+          <label style={{ fontSize: 13, color: "#94A3B8", whiteSpace: "nowrap" }}>Wallpaper:</label>
           <select
-            className="xp-select"
             value={site.wallpaper}
             onChange={e => setSite(s => s ? { ...s, wallpaper: e.target.value } : s)}
+            style={{
+              background: "#1A1A2E", border: "1px solid rgba(124,58,237,0.25)",
+              borderRadius: 7, padding: "6px 12px", fontSize: 13, color: "#F1F5F9",
+              fontFamily: "'Inter', sans-serif", cursor: "pointer",
+            }}
           >
             {WALLPAPERS.map(w => <option key={w.id} value={w.id}>{w.label}</option>)}
           </select>
@@ -471,17 +482,44 @@ export default function EditorPage() {
 
         <div style={{ flex: 1 }} />
 
+        <button
+          onClick={saveSiteSettings}
+          disabled={saving}
+          style={{
+            background: saved ? "rgba(34,197,94,0.15)" : "linear-gradient(135deg,#7C3AED,#9F67FF)",
+            border: saved ? "1px solid rgba(34,197,94,0.4)" : "none",
+            color: saved ? "#86EFAC" : "white",
+            borderRadius: 8, padding: "8px 18px", cursor: "pointer",
+            fontSize: 13, fontWeight: 600, fontFamily: "'Inter', sans-serif",
+            opacity: saving ? 0.7 : 1,
+            boxShadow: saved ? "none" : "0 4px 12px rgba(124,58,237,0.35)",
+          }}
+        >
+          {saved ? "✓ Saved" : saving ? "Saving..." : "Save changes"}
+        </button>
+
         <Link
           href={`/${site.username}`}
           target="_blank"
-          className="xp-button"
-          style={{ textDecoration: "none", color: "#1a1a1a" }}
+          style={{
+            background: "rgba(6,182,212,0.1)", border: "1px solid rgba(6,182,212,0.3)",
+            color: "#06B6D4", borderRadius: 8, padding: "8px 14px",
+            fontSize: 13, fontWeight: 500, textDecoration: "none",
+            fontFamily: "'Inter', sans-serif",
+          }}
         >
-          👁️ View My Page
+          View my page →
         </Link>
 
-        <button className="xp-button" onClick={logout}>
-          🚪 Logout
+        <button
+          onClick={logout}
+          style={{
+            background: "transparent", border: "1px solid rgba(255,255,255,0.1)",
+            color: "#94A3B8", borderRadius: 7, padding: "8px 12px", cursor: "pointer",
+            fontSize: 13, fontFamily: "'Inter', sans-serif",
+          }}
+        >
+          Logout
         </button>
       </div>
 

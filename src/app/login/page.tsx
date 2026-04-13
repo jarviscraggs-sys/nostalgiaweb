@@ -36,123 +36,128 @@ export default function LoginPage() {
   }
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#008080",
-        backgroundImage: `repeating-linear-gradient(0deg, rgba(0,0,0,0.03) 0px, rgba(0,0,0,0.03) 1px, transparent 1px, transparent 3px)`,
-        fontFamily: "Tahoma, Verdana, Arial, sans-serif",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 16,
-      }}
-    >
-      <div style={{ width: "100%", maxWidth: 360 }}>
-        <div className="xp-window">
-          <div className="xp-titlebar">
-            <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
-              <span>🔐</span>
-              <span>Sign In to NostalgiaWeb</span>
-            </div>
-            <div style={{ display: "flex", gap: 3 }}>
-              <div className="xp-tb-btn xp-tb-btn-min">_</div>
-              <div className="xp-tb-btn xp-tb-btn-max">□</div>
-              <div className="xp-tb-btn xp-tb-btn-close">✕</div>
-            </div>
+    <div style={{
+      minHeight: "100vh",
+      backgroundColor: "#0F0F1A",
+      fontFamily: "'Inter', sans-serif",
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 24,
+    }}>
+      {/* Background glow */}
+      <div style={{
+        position: "fixed", inset: 0, pointerEvents: "none",
+        background: "radial-gradient(ellipse 60% 50% at 50% 0%, rgba(124,58,237,0.12) 0%, transparent 70%)",
+      }} />
+
+      {/* Logo */}
+      <Link href="/" style={{ textDecoration: "none", marginBottom: 40 }}>
+        <span style={{
+          fontSize: 24, fontWeight: 800,
+          background: "linear-gradient(135deg,#7C3AED,#06B6D4)",
+          WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent",
+        }}>
+          NostalgiaWeb
+        </span>
+      </Link>
+
+      {/* Card */}
+      <div style={{
+        width: "100%", maxWidth: 400,
+        background: "#1A1A2E",
+        borderRadius: 16,
+        border: "1px solid rgba(124,58,237,0.2)",
+        boxShadow: "0 24px 60px rgba(0,0,0,0.4)",
+        padding: "36px 32px",
+        position: "relative",
+        zIndex: 1,
+      }}>
+        <h1 style={{ fontSize: 24, fontWeight: 800, marginBottom: 6, color: "#F1F5F9" }}>Welcome back</h1>
+        <p style={{ fontSize: 14, color: "#94A3B8", marginBottom: 28 }}>Sign in to your NostalgiaWeb account</p>
+
+        {error && (
+          <div style={{
+            background: "rgba(239,68,68,0.1)",
+            border: "1px solid rgba(239,68,68,0.3)",
+            borderRadius: 8,
+            padding: "10px 14px",
+            marginBottom: 20,
+            fontSize: 13,
+            color: "#FCA5A5",
+          }}>
+            {error}
+          </div>
+        )}
+
+        <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+          <div>
+            <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#CBD5E1", marginBottom: 6 }}>
+              Email address
+            </label>
+            <input
+              type="email"
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+              placeholder="you@example.com"
+              required
+              autoFocus
+              className="saas-input"
+            />
           </div>
 
-          <div style={{ padding: 20, background: "#D4D0C8" }}>
-            {/* User icon area */}
-            <div style={{ textAlign: "center", marginBottom: 20 }}>
-              <div style={{ fontSize: 48 }}>👤</div>
-              <p style={{ fontSize: 12, color: "#404040", marginTop: 4 }}>Enter your credentials</p>
-            </div>
-
-            {error && (
-              <div style={{
-                background: "#FFF0F0",
-                border: "1px solid #FF4444",
-                padding: "6px 10px",
-                marginBottom: 12,
-                fontSize: 11,
-                color: "#CC0000",
-              }}>
-                ⚠️ {error}
-              </div>
-            )}
-
-            <form onSubmit={handleSubmit}>
-              <div style={{ marginBottom: 12 }}>
-                <label style={{ display: "block", fontSize: 11, marginBottom: 3, fontWeight: "bold" }}>
-                  Email Address:
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  className="xp-input"
-                  style={{ width: "100%" }}
-                  placeholder="you@example.com"
-                  required
-                  autoFocus
-                />
-              </div>
-
-              <div style={{ marginBottom: 16 }}>
-                <label style={{ display: "block", fontSize: 11, marginBottom: 3, fontWeight: "bold" }}>
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={e => setPassword(e.target.value)}
-                  className="xp-input"
-                  style={{ width: "100%" }}
-                  placeholder="••••••••"
-                  required
-                />
-              </div>
-
-              <div style={{ display: "flex", gap: 8, justifyContent: "center", marginBottom: 12 }}>
-                <button
-                  type="submit"
-                  className="xp-button"
-                  disabled={loading}
-                  style={{ padding: "4px 24px", fontWeight: "bold" }}
-                >
-                  {loading ? "Signing in..." : "Sign In →"}
-                </button>
-                <button
-                  type="button"
-                  className="xp-button"
-                  onClick={() => router.push("/")}
-                >
-                  Cancel
-                </button>
-              </div>
-            </form>
-
-            <div style={{ borderTop: "1px solid #808080", paddingTop: 12, textAlign: "center", fontSize: 11 }}>
-              <p style={{ color: "#555" }}>
-                Don&apos;t have an account?{" "}
-                <Link href="/register" style={{ color: "#003E82", fontWeight: "bold" }}>
-                  Register here →
-                </Link>
-              </p>
-              <p style={{ color: "#888", marginTop: 6, fontSize: 10 }}>
-                Demo: demo@nostalgiaweb.co.uk / demo123
-              </p>
-            </div>
+          <div>
+            <label style={{ display: "block", fontSize: 13, fontWeight: 600, color: "#CBD5E1", marginBottom: 6 }}>
+              Password
+            </label>
+            <input
+              type="password"
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+              placeholder="••••••••"
+              required
+              className="saas-input"
+            />
           </div>
+
+          <button
+            type="submit"
+            disabled={loading}
+            className="saas-btn-primary"
+            style={{ width: "100%", justifyContent: "center", marginTop: 4, opacity: loading ? 0.7 : 1 }}
+          >
+            {loading ? "Signing in..." : "Sign in →"}
+          </button>
+        </form>
+
+        <div style={{ borderTop: "1px solid rgba(255,255,255,0.06)", marginTop: 24, paddingTop: 20 }}>
+          <p style={{ textAlign: "center", fontSize: 14, color: "#94A3B8" }}>
+            Don&apos;t have an account?{" "}
+            <Link href="/register" style={{ color: "#7C3AED", textDecoration: "none", fontWeight: 600 }}>
+              Register →
+            </Link>
+          </p>
         </div>
 
-        <div style={{ textAlign: "center", marginTop: 12 }}>
-          <Link href="/" style={{ color: "rgba(255,255,255,0.8)", fontSize: 11, textDecoration: "none" }}>
-            ← Back to NostalgiaWeb
-          </Link>
+        {/* Demo credentials */}
+        <div style={{
+          marginTop: 20,
+          background: "rgba(124,58,237,0.06)",
+          border: "1px solid rgba(124,58,237,0.15)",
+          borderRadius: 8,
+          padding: "10px 14px",
+        }}>
+          <p style={{ fontSize: 12, color: "#94A3B8", margin: 0 }}>
+            <span style={{ color: "#7C3AED", fontWeight: 600 }}>Demo: </span>
+            demo@nostalgiaweb.co.uk / demo123
+          </p>
         </div>
       </div>
+
+      <p style={{ marginTop: 24, fontSize: 13, color: "#94A3B8" }}>
+        <Link href="/" style={{ color: "#94A3B8", textDecoration: "none" }}>← Back to NostalgiaWeb</Link>
+      </p>
     </div>
   );
 }
