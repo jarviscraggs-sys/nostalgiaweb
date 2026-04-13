@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --xp-blue: #0078D7;
+  --xp-blue-dark: #003E82;
+  --xp-blue-light: #3399FF;
+  --win-grey: #D4D0C8;
+  --win-dark: #808080;
+  --win-darker: #404040;
+  --win-white: #FFFFFF;
+  --teal: #008080;
+  --title-grad: linear-gradient(to right, #0A246A 0%, #3A6EA5 100%);
+  --font-ui: "Tahoma", "Verdana", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* XP Window */
+.xp-window {
+  border: 2px solid;
+  border-color: white #808080 #808080 white;
+  background: #D4D0C8;
+  box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+  border-radius: 6px 6px 0 0;
+  overflow: hidden;
+}
+
+/* XP Title Bar */
+.xp-titlebar {
+  background: linear-gradient(to right, #0A246A, #3A6EA5);
+  color: white;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  padding: 3px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  user-select: none;
+  cursor: move;
+}
+
+.xp-titlebar-inactive {
+  background: linear-gradient(to right, #7A96DF, #A7C0F0);
+}
+
+/* XP Button */
+.xp-button {
+  background: linear-gradient(to bottom, #ECE9D8, #D4D0C8);
+  border: 1px solid;
+  border-color: white #808080 #808080 white;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  padding: 3px 10px;
+  cursor: pointer;
+  outline: none;
+}
+
+.xp-button:hover {
+  background: linear-gradient(to bottom, #F0EDE0, #DDD9C8);
+}
+
+.xp-button:active {
+  border-color: #808080 white white #808080;
+  background: linear-gradient(to bottom, #D4D0C8, #ECE9D8);
+}
+
+/* XP Input */
+.xp-input {
+  border: 2px inset #D4D0C8;
+  border-color: #808080 white white #808080;
+  background: white;
+  padding: 3px 6px;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  outline: none;
+}
+
+.xp-input:focus {
+  border-color: #0A246A;
+}
+
+/* XP Select */
+.xp-select {
+  border: 2px inset #D4D0C8;
+  border-color: #808080 white white #808080;
+  background: white;
+  padding: 3px 6px;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+}
+
+/* Title bar control buttons */
+.xp-tb-btn {
+  width: 18px;
+  height: 16px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: bold;
+  color: #1a1a1a;
+  font-family: Tahoma, sans-serif;
+  flex-shrink: 0;
+}
+
+.xp-tb-btn:hover {
+  filter: brightness(1.15);
+}
+
+.xp-tb-btn-min {
+  background: linear-gradient(180deg, #f0c060 0%, #d4a020 100%);
+}
+
+.xp-tb-btn-max {
+  background: linear-gradient(180deg, #70c070 0%, #30a030 100%);
+  color: white;
+}
+
+.xp-tb-btn-close {
+  background: linear-gradient(180deg, #f07070 0%, #c02020 100%);
+  color: white;
+}
+
+/* XP Inset Panel */
+.xp-inset {
+  border: 1px solid;
+  border-color: #808080 white white #808080;
+  background: white;
+  padding: 4px;
+}
+
+/* XP Taskbar */
+.xp-taskbar {
+  background: linear-gradient(to bottom, #245EDC, #1941A5);
+  height: 38px;
+  display: flex;
+  align-items: center;
+  padding: 0 4px;
+  gap: 4px;
+  border-top: 2px solid #4B75D9;
+}
+
+.xp-start-btn {
+  background: linear-gradient(to bottom, #58A229, #3A7A17);
+  border: 1px solid #1E5C00;
+  border-radius: 10px;
+  padding: 2px 12px 2px 8px;
+  color: white;
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: italic;
+  cursor: pointer;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.xp-start-btn:hover {
+  background: linear-gradient(to bottom, #68B239, #4A8A27);
+}
+
+.xp-taskbar-btn {
+  background: linear-gradient(to bottom, #3D75CE, #2B5EAE);
+  border: 1px solid #1E4080;
+  border-radius: 3px;
+  padding: 2px 8px;
+  color: white;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  cursor: pointer;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 150px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.xp-taskbar-btn:hover {
+  background: linear-gradient(to bottom, #4D85DE, #3B6EBE);
+}
+
+.xp-taskbar-btn.active {
+  background: linear-gradient(to bottom, #1E4A9C, #2B5EAE);
+  border-color: #0A246A;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+/* Clock area */
+.xp-clock {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px inset #1E4080;
+  padding: 2px 8px;
+  color: white;
+  font-family: Tahoma, sans-serif;
+  font-size: 11px;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Wallpapers */
+.wallpaper-bliss {
+  background: 
+    radial-gradient(ellipse at 50% 120%, #6cb552 0%, #3a8c2a 40%, #2a6c1a 60%, #1a4a0a 100%),
+    linear-gradient(to bottom, #5bbcf8 0%, #4a9de0 35%, #87ceeb 60%, #a8d5f0 100%);
+  background-size: 100% 50%, 100% 50%;
+  background-position: bottom, top;
+  background-repeat: no-repeat;
+}
+
+.wallpaper-space {
+  background: radial-gradient(ellipse at 20% 50%, #1a0533 0%, #0a0020 50%) fixed,
+    radial-gradient(circle at 80% 20%, #200040 0%, transparent 60%);
+  background-color: #050010;
+}
+
+.wallpaper-dark {
+  background-color: #1a1a2e;
+  background-image: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.wallpaper-teal {
+  background-color: #008080;
+  background-image: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.03) 0px,
+    rgba(0,0,0,0.03) 1px,
+    transparent 1px,
+    transparent 4px
+  );
+}
+
+.wallpaper-classic {
+  background-color: #3a6ea5;
+  background-image: linear-gradient(135deg, #3a6ea5 0%, #0a246a 100%);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 16px; }
+::-webkit-scrollbar-track { background: #D4D0C8; border: 1px solid #808080; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to right, #ECE9D8, #D4D0C8);
+  border: 1px solid;
+  border-color: white #808080 #808080 white;
+}
+::-webkit-scrollbar-button {
+  background: linear-gradient(to bottom, #ECE9D8, #D4D0C8);
+  border: 1px solid;
+  border-color: white #808080 #808080 white;
+  height: 16px;
+}
+
+/* Blinking cursor */
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+.blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* Scanline overlay */
+.scanlines::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
